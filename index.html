@@ -1,11 +1,251 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Toviah Moldwin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Toviah Moldwin — Data Science & Computational Neuroscience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg: #faf9f6;
+        --text: #1a1a1a;
+        --muted: #5c5c5c;
+        --accent: #2d4a6f;
+        --accent-soft: #e8eef4;
+        --border: #e0ddd8;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 1.05rem;
+        line-height: 1.65;
+        color: var(--text);
+        background: var(--bg);
+      }
+      .wrap { max-width: 720px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+      h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; }
+      h1 { font-size: 2.25rem; margin: 0 0 0.25rem; letter-spacing: 0.02em; }
+      h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 0.35rem; }
+      #about h2 { margin-top: 0; }
+      h3 { font-size: 1.15rem; margin: 1.25rem 0 0.4rem; }
+      p { margin: 0 0 0.75rem; color: var(--text); }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .header-row { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; min-height: 220px; }
+      .header-text { flex: 1; min-width: 0; }
+      .header-photo { width: 120px; height: 120px; object-fit: cover; border-radius: 50%; flex-shrink: 0; }
+      .tagline { font-size: 1.1rem; color: var(--muted); margin: 0 0 1rem; }
+      .nav-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 0; }
+      .nav-links a { font-size: 0.95rem; }
+      section + section { margin-top: 0.5rem; }
+      .item { margin-bottom: 1.25rem; }
+      .item-title { font-weight: 700; }
+      .item-org { color: var(--muted); font-size: 0.95rem; }
+      .item-date { color: var(--muted); font-size: 0.9rem; }
+      ul { margin: 0.25rem 0 0.75rem; padding-left: 1.25rem; }
+      li { margin-bottom: 0.25rem; }
+      .paper { margin-bottom: 0.75rem; padding: 0.75rem 0; }
+      .project { margin-bottom: 1rem; }
+      .paper-title, .project-title { font-weight: 600; margin-bottom: 0.35rem; }
+      .paper-citation { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.5rem; }
+      .paper-summary { font-size: 0.95rem; margin: 0; line-height: 1.6; }
+      .paper-venue, .project-desc { font-size: 0.95rem; color: var(--muted); }
+      .project-desc { margin-top: 0.25rem; line-height: 1.6; }
+      .resume-link { display: inline-block; margin-top: 1rem; font-weight: 600; }
+      /* Expandable paper */
+      .paper details { margin: 0; }
+      .paper summary { cursor: pointer; list-style: none; font-weight: 600; margin: 0; padding: 0.2rem 0 0.2rem 1.6em; position: relative; min-height: 1.5em; display: flex; align-items: center; }
+      .paper summary::-webkit-details-marker { display: none; }
+      .paper summary::before { content: "▸"; position: absolute; left: 0; top: 50%; transform: translateY(-50%); font-size: 1.35em; color: var(--accent); line-height: 1; font-weight: 400; transition: transform 0.2s ease, color 0.2s ease; }
+      .paper summary:hover::before { color: var(--text); }
+      .paper details[open] summary::before { content: "▾"; transform: translateY(-50%); }
+      .paper-teaser { font-size: 0.9rem; color: var(--muted); margin: 0.4rem 0 0 1.6em; }
+      .paper-body { margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px solid rgba(45, 74, 111, 0.12); margin-left: 0; }
+      .paper-abstract { font-size: 0.95rem; margin: 0 0 0.75rem; line-height: 1.65; }
+      .paper-fig { margin: 0.6rem 0; border-radius: 4px; overflow: hidden; max-width: 100%; }
+      .paper-fig img { display: block; width: 100%; max-width: 420px; height: auto; border-radius: 2px; }
+      .paper-fig figcaption { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+      .dissertation { margin-bottom: 1.25rem; }
+      .dissertation-title { font-weight: 600; margin-bottom: 0.2rem; }
+      .dissertation-meta { font-size: 0.95rem; color: var(--muted); margin-bottom: 0.25rem; }
+      @media (max-width: 600px) { .wrap { padding: 0 1rem 3rem; } h1 { font-size: 1.85rem; } .header-row { flex-direction: column-reverse; align-items: center; text-align: center; } .header-photo { width: 100px; height: 100px; } }
+    </style>
   </head>
   <body>
-    <h1>It works.</h1>
-    <p>This is tmoldwin.github.io</p>
+    <div class="wrap">
+      <header class="header-row">
+        <div class="header-text">
+          <h1>Toviah Moldwin, Ph.D.</h1>
+          <p class="tagline">Data Science, Machine Learning &amp; Computational Neuroscience</p>
+          <nav class="nav-links">
+            <a href="https://github.com/tmoldwin" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/toviahmoldwin" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://scholar.google.com/scholar?q=author%3A%22Toviah+Moldwin%22" target="_blank" rel="noopener">Google Scholar</a>
+            <a href="NS_Toviah_Moldwin_Resume.pdf" target="_blank">Resume (PDF)</a>
+            <a href="https://dendwrite.substack.com/" target="_blank" rel="noopener">Blog</a>
+            <a href="https://notazombie.net/t/toviadndx" target="_blank" rel="noopener">Date me</a>
+            <a href="https://www.youtube.com/@synfirechain5064" target="_blank" rel="noopener">Music (Synfire Chain)</a>
+          </nav>
+        </div>
+        <img src="megrafitti.png" alt="Toviah Moldwin" class="header-photo" width="120" height="120">
+      </header>
+
+      <section id="about">
+        <h2>About</h2>
+        <p>
+          I am a computational neuroscientist, machine learning engineer and data scientist with experience in the pharmaceutical industry and a Ph.D. in computational neuroscience from the Hebrew University of Jerusalem. My work spans hands-on coding for data science, visualization, AI/ML, and scientific simulations, as well as product management and leading teams from idea to product.
+        </p>
+      </section>
+
+      <section id="research">
+        <h2>Research &amp; Papers</h2>
+        <p>My research focuses on how single neurons and dendrites implement learning: calcium-based synaptic plasticity, dendritic computation, and brain-inspired machine learning. Click a paper to expand the summary and a figure highlight.</p>
+
+        <div class="paper">
+          <details>
+            <summary>The Calcitron: A Simple Neuron Model That Implements Many Learning Rules via the Calcium Control Hypothesis</summary>
+            <div class="paper-teaser">T. Moldwin, L. S. Azran, I. Segev. <em>PLOS Comput. Biol.</em> <strong>21</strong>(1): e1012754 (2025). <a href="https://doi.org/10.1371/journal.pcbi.1012754" target="_blank" rel="noopener">doi:10.1371/journal.pcbi.1012754</a></div>
+            <div class="paper-body">
+              <p class="paper-abstract">Theoretical neuroscientists and machine learning researchers have proposed a variety of learning rules to enable artificial neural networks to effectively perform both supervised and unsupervised learning tasks. It is not always clear, however, how these theoretically-derived rules relate to biological mechanisms of plasticity in the brain, or how these different rules might be mechanistically implemented in different contexts and brain regions. This study shows that the calcium control hypothesis, which relates synaptic plasticity in the brain to the calcium concentration ([Ca<sup>2+</sup>]) in dendritic spines, can produce a diverse array of learning rules. We propose a simple, perceptron-like neuron model, the calcitron, that has four sources of [Ca<sup>2+</sup>]: <em>local</em> (following the activation of an excitatory synapse and confined to that synapse), <em>heterosynaptic</em> (resulting from the activity of other synapses), <em>postsynaptic spike-dependent</em>, and <em>supervisor-dependent</em>. We demonstrate that by modulating the plasticity thresholds and calcium influx from each calcium source, we can reproduce a wide range of learning and plasticity protocols, such as Hebbian and anti-Hebbian learning, frequency-dependent plasticity, and unsupervised recognition of frequently repeating input patterns. Moreover, by devising simple neural circuits to provide supervisory signals, we show how the calcitron can implement homeostatic plasticity, perceptron learning, and BTSP-inspired one-shot learning. Our study bridges the gap between theoretical learning algorithms and their biological counterparts, not only replicating established learning paradigms but also introducing novel rules.</p>
+              <p><a href="https://github.com/tmoldwin/Calcitron" target="_blank" rel="noopener">Code</a></p>
+            </div>
+          </details>
+        </div>
+
+        <div class="paper">
+          <details>
+            <summary>A Generalized Framework for the Calcium Control Hypothesis Describes Weight-Dependent Synaptic Changes in Behavioral Time Scale Plasticity</summary>
+            <div class="paper-teaser">T. Moldwin, L. S. Azran, I. Segev. <em>J. Comput. Neurosci.</em> <strong>53</strong>(2): 333–357 (2025). <a href="https://doi.org/10.1007/s10827-025-00894-6" target="_blank" rel="noopener">doi:10.1007/s10827-025-00894-6</a></div>
+            <div class="paper-body">
+              <p class="paper-abstract">The brain modifies synaptic strengths to store new information via long-term potentiation (LTP) and long-term depression (LTD). Evidence has mounted that long-term plasticity is controlled via concentrations of calcium ([Ca<sup>2+</sup>]) in postsynaptic spines. Several mathematical models describe this phenomenon, including those of Shouval, Bear, and Cooper (SBC) and Graupner and Brunel (GB). Here we suggest a generalized version of the SBC and GB models, based on a fixed point–learning rate (FPLR) framework, where the synaptic [Ca<sup>2+</sup>] specifies a fixed point toward which the synaptic weight approaches asymptotically at a [Ca<sup>2+</sup>]-dependent rate. The FPLR framework offers a straightforward phenomenological interpretation of calcium-based plasticity: the calcium concentration tells the synaptic weight where it is going and how fast it goes there. The framework can flexibly incorporate various experimental findings, including multiple regions of [Ca<sup>2+</sup>] where no plasticity occurs, or plasticity in cerebellar Purkinje cells where the directionality of calcium-based synaptic changes is thought to be reversed relative to cortical and hippocampal neurons. We also suggest a modeling approach that captures the dependency of late-phase plasticity stabilization on protein synthesis. We demonstrate that due to the asymptotic, saturating nature of synaptic changes in the FPLR rule, the result of frequency- and spike-timing–dependent plasticity protocols are weight-dependent. Finally, we show how the FPLR framework can explain plateau potential–induced place field formation in hippocampal CA1 neurons, also known as behavioral time scale plasticity (BTSP).</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="paper">
+          <details>
+            <summary>Asymmetric Voltage Attenuation in Dendrites Can Enable Hierarchical Heterosynaptic Plasticity</summary>
+            <div class="paper-teaser">T. Moldwin, M. Kalmenson, I. Segev. <em>eNeuro</em> <strong>10</strong>(7): ENEURO.0014-23.2023 (2023). <a href="https://doi.org/10.1523/ENEURO.0014-23.2023" target="_blank" rel="noopener">doi:10.1523/ENEURO.0014-23.2023</a></div>
+            <div class="paper-body">
+              <figure class="paper-fig">
+                <a href="https://doi.org/10.1523/ENEURO.0014-23.2023" target="_blank" rel="noopener"><img src="https://www.eneuro.org/content/eneuro/10/7/ENEURO.0014-23.2023/F1.large.jpg" alt="Calcium control and VGCC hypothesis for heterosynaptic plasticity" loading="lazy"></a>
+                <figcaption>Calcium control hypothesis and asymmetric voltage spread (eNeuro, Fig 1).</figcaption>
+              </figure>
+              <p class="paper-abstract">Long-term synaptic plasticity is mediated via cytosolic calcium concentrations ([Ca<sup>2+</sup>]). Using a synaptic model that implements calcium-based long-term plasticity via two sources of Ca<sup>2+</sup>—NMDA receptors and voltage-gated calcium channels (VGCCs)—we show in dendritic cable simulations that the interplay between these two calcium sources can result in a diverse array of heterosynaptic effects. When spatially clustered synaptic input produces a local NMDA spike, the resulting dendritic depolarization can activate VGCCs at nonactivated spines, resulting in heterosynaptic plasticity. NMDA spike activation at a given dendritic location will tend to depolarize dendritic regions that are located distally to the input site more than dendritic sites that are proximal to it. This asymmetry can produce a hierarchical effect in branching dendrites, where an NMDA spike at a proximal branch can induce heterosynaptic plasticity primarily at branches that are distal to it. We also explored how simultaneously activated synaptic clusters located at different dendritic locations synergistically affect the plasticity at the active synapses, as well as the heterosynaptic plasticity of an inactive synapse "sandwiched" between them. We conclude that the inherent electrical asymmetry of dendritic trees enables sophisticated schemes for spatially targeted supervision of heterosynaptic plasticity.</p>
+              <p><a href="https://github.com/mkblitz/Hierarchical-hetero" target="_blank" rel="noopener">Code</a></p>
+            </div>
+          </details>
+        </div>
+
+        <div class="paper">
+          <details>
+            <summary>The gradient clusteron: A model neuron that learns to solve classification tasks via dendritic nonlinearities, structural plasticity, and gradient descent</summary>
+            <div class="paper-teaser">T. Moldwin, M. Kalmenson, I. Segev. <em>PLOS Comput. Biol.</em> <strong>17</strong>(5): e1009015 (2021). <a href="https://doi.org/10.1371/journal.pcbi.1009015" target="_blank" rel="noopener">doi:10.1371/journal.pcbi.1009015</a></div>
+            <div class="paper-body">
+              <figure class="paper-fig">
+                <a href="https://doi.org/10.1371/journal.pcbi.1009015" target="_blank" rel="noopener"><img src="https://journals.plos.org/ploscompbiol/article/figure/image?size=medium&amp;id=10.1371/journal.pcbi.1009015.g001" alt="G-clusteron model and synaptic location update rule" loading="lazy"></a>
+                <figcaption>G-clusteron model and distance-dependent interactions (PLOS Comput Biol, Fig 1).</figcaption>
+              </figure>
+              <p class="paper-abstract">Synaptic clustering on neuronal dendrites has been hypothesized to play an important role in implementing pattern recognition. Neighboring synapses on a dendritic branch can interact in a synergistic, cooperative manner via nonlinear voltage-dependent mechanisms, such as NMDA receptors. Inspired by the NMDA receptor, the single-branch clusteron learning algorithm takes advantage of location-dependent multiplicative nonlinearities to solve classification tasks by randomly shuffling the locations of "under-performing" synapses on a model dendrite during learning ("structural plasticity"), eventually resulting in synapses with correlated activity being placed next to each other on the dendrite. We propose an alternative model, the gradient clusteron, or G-clusteron, which uses an analytically-derived gradient descent rule where synapses are "attracted to" or "repelled from" each other in an input- and location-dependent manner. We demonstrate the classification ability of this algorithm by testing it on the MNIST handwritten digit dataset and show that, when using a softmax activation function, the accuracy of the G-clusteron on the all-versus-all MNIST task (~85%) approaches that of logistic regression (~93%). In addition to the location update rule, we also derive a learning rule for the synaptic weights of the G-clusteron ("functional plasticity") and show that a G-clusteron that utilizes the weight update rule can achieve ~89% accuracy on the MNIST task. We also show that a G-clusteron with both the weight and location update rules can learn to solve the XOR problem from arbitrary initial conditions.</p>
+              <p><a href="https://github.com/mkblitz/The-Gradient-Clusteron" target="_blank" rel="noopener">Code</a></p>
+            </div>
+          </details>
+        </div>
+
+        <div class="paper">
+          <details>
+            <summary>Perceptron Learning and Classification in a Modeled Cortical Pyramidal Cell</summary>
+            <div class="paper-teaser">T. Moldwin, I. Segev. <em>Front. Comput. Neurosci.</em> <strong>14</strong>:33 (2020). <a href="https://doi.org/10.3389/fncom.2020.00033" target="_blank" rel="noopener">doi:10.3389/fncom.2020.00033</a></div>
+            <div class="paper-body">
+              <figure class="paper-fig">
+                <a href="https://doi.org/10.3389/fncom.2020.00033" target="_blank" rel="noopener"><img src="https://www.frontiersin.org/files/Articles/500178/fncom-14-00033-HTML-r4/image_m/fncom-14-00033-g001.jpg" alt="M&amp;P and biophysical perceptron schematic" loading="lazy"></a>
+                <figcaption>McCulloch–Pitts vs biophysical perceptron (Front. Comput. Neurosci., Fig 1).</figcaption>
+              </figure>
+              <p class="paper-abstract">The perceptron learning algorithm and its multiple-layer extension, the backpropagation algorithm, are the foundations of the present-day machine learning revolution. However, these algorithms utilize a highly simplified mathematical abstraction of a neuron; it is not clear to what extent real biophysical neurons with morphologically-extended non-linear dendritic trees and conductance-based synapses can realize perceptron-like learning. Here we implemented the perceptron learning algorithm in a realistic biophysical model of a layer 5 cortical pyramidal cell with a full complement of non-linear dendritic channels. We tested this biophysical perceptron (BP) on a classification task, where it needed to correctly binarily classify 100, 1,000, or 2,000 patterns, and a generalization task, where it was required to discriminate between two "noisy" patterns. We show that the BP performs these tasks with an accuracy comparable to that of the original perceptron, though the classification capacity of the apical tuft is somewhat limited. We concluded that cortical pyramidal neurons can act as powerful classification devices.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="paper">
+          <details>
+            <summary>Statistical Learning of Melodic Patterns Influences the Brain's Response to Wrong Notes</summary>
+            <div class="paper-teaser">T. Moldwin, O. Schwartz, E. S. Sussman. <em>J. Cogn. Neurosci.</em> <strong>29</strong>(12): 2114–2125 (2017). <a href="https://doi.org/10.1162/jocn_a_01181" target="_blank" rel="noopener">doi:10.1162/jocn_a_01181</a></div>
+            <div class="paper-body">
+              <p class="paper-abstract">Statistical learning is a fundamental mechanism that allows the brain to automatically extract structure from the environment. We examined whether implicit statistical learning of melodic patterns influences what is held in auditory working memory and the brain's response to violations of that structure. Event-related potentials (ERPs) were recorded in response to tone sequences that contained statistically cohesive melodic patterns. We found that statistical learning of melodic structure influences the brain's response to "wrong" notes, demonstrating a direct link between statistical learning and neurophysiological measures of expectation and memory.</p>
+            </div>
+          </details>
+        </div>
+
+        <p><a href="https://scholar.google.com/scholar?q=author%3A%22Toviah+Moldwin%22" target="_blank" rel="noopener" class="resume-link">View all publications → Google Scholar</a></p>
+      </section>
+
+      <section id="projects">
+        <h2>Projects</h2>
+        <p>Selected software and applied work beyond the papers above.</p>
+        <div class="project">
+          <div class="project-title">Intuitive transformer interpretability</div>
+          <div class="project-desc">Developed probe tasks and a framework for interpretability of transformer models, with a focus on making transformer behavior interpretable in an intuitive way. <a href="https://github.com/tmoldwin" target="_blank" rel="noopener">GitHub</a>.</div>
+        </div>
+        <div class="project">
+          <div class="project-title">Synapse classification from electron microscopy</div>
+          <div class="project-desc">Computer vision and machine-learning pipelines for classifying synapses in mouse brain electron microscopy images. Led the project for large-scale analysis (~100 GB) of nanoscale imaging data (tens of thousands of neurons, millions of synapses). <a href="https://github.com/tmoldwin" target="_blank" rel="noopener">GitHub</a>.</div>
+        </div>
+        <div class="project">
+          <div class="project-title">NotAZombie — NLP-based matching</div>
+          <div class="project-desc">Designed and built an adaptive, NLP-based matching system for dating that uses open-source generative AI (LLMs), user behavior, and text. Implemented novel scoring metrics for matching, an interactive dashboard for experimenting with algorithms, and full stack development and deployment at <a href="https://notazombie.net" target="_blank" rel="noopener">NotAZombie.net</a>.</div>
+        </div>
+        <div class="project">
+          <div class="project-title">Medical cannabis &amp; patient outcomes</div>
+          <div class="project-desc">At Bazelet Pharmaceuticals: applied statistical and machine-learning models and data visualization to identify chemical properties of medical cannabis strains associated with improved patient outcomes. Results reported to CSO and CEO.</div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <h2>Experience</h2>
+        <div class="item">
+          <div class="item-title">Computational Neuroscience Researcher</div>
+          <div class="item-org">ELSC, Hebrew University of Jerusalem</div>
+          <div class="item-date">Jun 2016 – present</div>
+        </div>
+        <div class="item">
+          <div class="item-title">Senior AI Architect</div>
+          <div class="item-org">NotAZombie: Dating for People with Brains</div>
+          <div class="item-date">Oct 2023 – present</div>
+        </div>
+        <div class="item">
+          <div class="item-title">Pharmaceutical Data Scientist (Medical Cannabis)</div>
+          <div class="item-org">Bazelet Pharmaceuticals</div>
+          <div class="item-date">Jul 2018 – Feb 2021</div>
+        </div>
+      </section>
+
+      <section id="education">
+        <h2>Education</h2>
+        <div class="item">
+          <div class="item-title">Ph.D. &amp; M.Sc., Computational Neuroscience</div>
+          <div class="item-org">ELSC, Hebrew University of Jerusalem (Feb 2024)</div>
+        </div>
+        <div class="item">
+          <div class="item-title">B.A., Computer Science &amp; Mathematics (Honors)</div>
+          <div class="item-org">Yeshiva University, New York, NY (May 2013)</div>
+        </div>
+      </section>
+
+      <section id="dissertations">
+        <h2>Dissertations</h2>
+        <div class="dissertation">
+          <div class="dissertation-title">Plasticity and Learning Algorithms in Models of the Single Neuron</div>
+          <div class="dissertation-meta">Ph.D. thesis, ELSC, Hebrew University of Jerusalem, 2024. Advisor: Idan Segev.</div>
+          <a href="https://www.youtube.com/watch?v=KLmk3xnojKU" target="_blank" rel="noopener">Thesis defense (video)</a>
+        </div>
+        <div class="dissertation">
+          <div class="dissertation-title">Using Supervised Machine Learning to Linguistically Date Biblical Texts</div>
+          <div class="dissertation-meta">Honors thesis, B.A., Yeshiva University, 2013.</div>
+        </div>
+      </section>
+    </div>
   </body>
 </html>
