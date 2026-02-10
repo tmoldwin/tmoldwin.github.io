@@ -74,7 +74,12 @@
       .dissertation-meta { font-size: 0.95rem; color: var(--muted); margin-bottom: 0.25rem; }
       .site-footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); }
       .footer-credit { font-size: 0.8rem; color: var(--muted); margin: 0; }
-      @media (max-width: 600px) { .wrap { padding: 0 1rem 3rem; } h1 { font-size: 1.85rem; } .header-row { flex-direction: column-reverse; align-items: center; text-align: center; } .header-photo { width: 100px; height: 100px; } }
+      @media (max-width: 600px) {
+        .wrap { padding: 1.5rem 1rem 3rem; }
+        h1 { font-size: 1.85rem; }
+        .header-row { flex-direction: column-reverse; align-items: center; text-align: center; min-height: auto; padding: 2rem 0; gap: 2rem; }
+        .header-photo { width: 100px; height: 100px; }
+      }
     </style>
   </head>
   <body>
