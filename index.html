@@ -33,7 +33,7 @@
       h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; }
       h1 { font-size: 2.25rem; margin: 0 0 0.35rem; letter-spacing: 0.02em; }
       h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 0.35rem; }
-      .tab-bar { display: flex; flex-wrap: wrap; gap: 0; margin: 1.25rem 0 0; border-bottom: 1px solid var(--border); }
+      .tab-bar { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--border); }
       .tab { padding: 0.5rem 0.85rem; font-size: 0.9rem; font-weight: 600; background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; color: var(--muted); cursor: pointer; font-family: inherit; white-space: nowrap; }
       .tab:hover { color: var(--text); }
       .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
@@ -61,6 +61,7 @@
       .paper { margin-bottom: 1rem; padding: 0.85rem 0; }
       .project { margin-bottom: 1.35rem; }
       .paper-title, .project-title { font-weight: 600; margin-bottom: 0.35rem; }
+      a.project-title { display: block; }
       .paper-citation { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.5rem; }
       .paper-summary { font-size: 0.95rem; margin: 0; line-height: 1.6; }
       .paper-venue, .project-desc { font-size: 0.95rem; color: var(--muted); }
@@ -110,8 +111,8 @@
 
       <nav class="tab-bar" role="tablist" aria-label="Sections">
         <button type="button" class="tab active" role="tab" aria-selected="true" data-tab="about">About</button>
-        <button type="button" class="tab" role="tab" aria-selected="false" data-tab="research">Publications</button>
         <button type="button" class="tab" role="tab" aria-selected="false" data-tab="projects">Projects</button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-tab="research">Publications</button>
         <button type="button" class="tab" role="tab" aria-selected="false" data-tab="resume">Resume</button>
         <button type="button" class="tab" role="tab" aria-selected="false" data-tab="links">Links</button>
       </nav>
@@ -129,6 +130,21 @@
         <p>
           If you are interested in hiring me for a full time or contract position, please reach out to me at the email address listed on my <a href="NS_Toviah_Moldwin_Resume.pdf" target="_blank" rel="noopener">resume</a>.
         </p>
+      </section>
+
+      <section id="projects" class="tab-panel" role="tabpanel">
+        <div class="project">
+          <a href="https://github.com/Raneem-mahajne/creating_transformer/tree/integer_string" target="_blank" rel="noopener" class="project-title">Intuitive transformer interpretability</a>
+          <div class="project-desc">Developed probe tasks and a framework for interpretability of transformer models, with a focus on making transformer behavior interpretable in an intuitive way.</div>
+        </div>
+        <div class="project">
+          <a href="https://github.com/tmoldwin/SynClass" target="_blank" rel="noopener" class="project-title">Synapse classification from electron microscopy</a>
+          <div class="project-desc">Computer vision and machine-learning pipelines for classifying synapses in mouse brain electron microscopy images. Led the project for large-scale analysis (~100 GB) of nanoscale imaging data (tens of thousands of neurons, millions of synapses).</div>
+        </div>
+        <div class="project">
+          <a href="https://notazombie.net" target="_blank" rel="noopener" class="project-title">NotAZombie: Dating for People with Brains</a>
+          <div class="project-desc">Designed and built an adaptive, NLP-based matching system for dating that uses open-source generative AI (LLMs), user behavior, and text. Implemented novel scoring metrics for matching, an interactive dashboard for experimenting with algorithms, and full stack development and deployment.</div>
+        </div>
       </section>
 
       <section id="research" class="tab-panel" role="tabpanel">
@@ -220,21 +236,6 @@
         <div class="dissertation">
           <div class="dissertation-title">Using Supervised Machine Learning to Linguistically Date Biblical Texts</div>
           <div class="dissertation-meta">Honors thesis, B.A., Yeshiva University, 2013.</div>
-        </div>
-      </section>
-
-      <section id="projects" class="tab-panel" role="tabpanel">
-        <div class="project">
-          <div class="project-title">Intuitive transformer interpretability</div>
-          <div class="project-desc">Developed probe tasks and a framework for interpretability of transformer models, with a focus on making transformer behavior interpretable in an intuitive way. <a href="https://github.com/tmoldwin" target="_blank" rel="noopener">GitHub</a>.</div>
-        </div>
-        <div class="project">
-          <div class="project-title">Synapse classification from electron microscopy</div>
-          <div class="project-desc">Computer vision and machine-learning pipelines for classifying synapses in mouse brain electron microscopy images. Led the project for large-scale analysis (~100 GB) of nanoscale imaging data (tens of thousands of neurons, millions of synapses). <a href="https://github.com/tmoldwin" target="_blank" rel="noopener">GitHub</a>.</div>
-        </div>
-        <div class="project">
-          <div class="project-title">NotAZombie: Dating for People with Brains</div>
-          <div class="project-desc">Designed and built an adaptive, NLP-based matching system for dating that uses open-source generative AI (LLMs), user behavior, and text. Implemented novel scoring metrics for matching, an interactive dashboard for experimenting with algorithms, and full stack development and deployment at <a href="https://notazombie.net" target="_blank" rel="noopener">NotAZombie.net</a>.</div>
         </div>
       </section>
 
