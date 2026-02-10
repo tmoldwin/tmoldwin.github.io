@@ -70,9 +70,9 @@
       .resume-embed-wrap iframe { display: block; width: 100%; height: 70vh; min-height: 500px; border: 0; }
       /* Expandable paper – project-like: title link, chevron right, partial abstract */
       .paper details { margin: 0; }
-      .paper summary { cursor: pointer; list-style: none; margin: 0; padding: 0; min-height: 1.5em; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+      .paper summary { cursor: pointer; list-style: none; margin: 0; padding: 0; min-height: 1.5em; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
       .paper summary::-webkit-details-marker { display: none; }
-      .paper summary .paper-chevron { flex-shrink: 0; font-size: 1.1em; color: var(--accent); transition: transform 0.2s ease, color 0.2s ease; }
+      .paper summary .paper-chevron { flex-shrink: 0; font-size: 1.5em; color: var(--accent); transition: transform 0.2s ease, color 0.2s ease; padding: 0.4rem 0.5rem; min-width: 2.5em; min-height: 2.5em; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; }
       .paper summary:hover .paper-chevron { color: var(--text); }
       .paper details[open] .paper-chevron { transform: rotate(90deg); }
       .paper summary .paper-title { flex: 1; min-width: 0; margin-bottom: 0; }
@@ -98,6 +98,8 @@
         .tab-bar::-webkit-scrollbar { display: none; }
         .tab { padding: 0.45rem 0.6rem; font-size: 0.85rem; flex-shrink: 0; }
         .tab-panel { padding-top: 1.25rem; }
+        .paper summary { gap: 0.75rem; }
+        .paper summary .paper-chevron { font-size: 1.5em; min-width: 2.5em; min-height: 2.5em; padding: 0.4rem; }
       }
     </style>
   </head>
