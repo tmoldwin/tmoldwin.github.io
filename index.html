@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
       :root {
+        --font-sans: 'Source Sans 3', sans-serif;
+        --font-serif: 'DM Serif Display', serif;
         --bg: #faf9f6;
         --text: #1a1a1a;
         --muted: #5c5c5c;
@@ -23,23 +25,40 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        font-family: 'Source Sans 3', sans-serif;
+        font-family: var(--font-sans);
         font-size: 1.05rem;
         line-height: 1.65;
         color: var(--text);
         background: var(--bg);
       }
       .wrap { flex: 1; display: flex; flex-direction: column; max-width: 720px; width: 100%; margin: 0 auto; padding: 0 1.5rem 3rem; }
-      h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; }
+
+      /* Typography: use classes, not element fonts */
+      .font-serif { font-family: var(--font-serif); font-weight: 400; }
+      .font-sans { font-family: var(--font-sans); }
+      .heading-1 { font-size: 2.25rem; margin: 0 0 0.35rem; letter-spacing: 0.02em; }
+      .heading-2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 0.35rem; }
+      .heading-3 { font-size: 1.15rem; margin: 1.75rem 0 0.5rem; }
+      h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; }
       h1 { font-size: 2.25rem; margin: 0 0 0.35rem; letter-spacing: 0.02em; }
       h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 0.35rem; }
       .tab-bar { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--border); }
-      .tab { padding: 0.5rem 0.85rem; font-size: 0.9rem; font-weight: 600; background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; color: var(--muted); cursor: pointer; font-family: inherit; white-space: nowrap; }
+      .tab { padding: 0.5rem 0.85rem; font-size: 0.9rem; font-weight: 600; background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; color: var(--muted); cursor: pointer; font-family: var(--font-sans); white-space: nowrap; }
       .tab:hover { color: var(--text); }
       .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
       .tab-panel { display: none; padding-top: 1.5rem; }
       .tab-panel.active { display: block; }
       h3 { font-size: 1.15rem; margin: 1.75rem 0 0.5rem; }
+
+      /* Entry titles: project, paper, dissertation links – identical typography */
+      .entry-title {
+        font-family: var(--font-sans);
+        font-weight: 600;
+        font-size: 1.05rem;
+      }
+      .project-title,
+      .paper-title,
+      .dissertation-title { margin-bottom: 0.35rem; }
       .link-list { list-style: none; padding: 0; margin: 0; }
       .link-list li { margin-bottom: 0.85rem; }
       .link-list a { font-size: 1.05rem; }
@@ -60,11 +79,20 @@
       li { margin-bottom: 0.25rem; }
       .paper { margin-bottom: 1.35rem; }
       .project { margin-bottom: 1.35rem; }
-      .paper-title, .project-title { font-weight: 600; margin-bottom: 0.35rem; }
-      a.paper-title, a.project-title { display: block; }
+      a.project-title,
+      a.paper-title,
+      a.dissertation-title,
+      .dissertation .dissertation-title { display: block; }
       .paper-citation { font-size: 0.9rem; color: var(--muted); margin: 0.25rem 0 0.5rem; }
-      .paper-venue, .project-desc { font-size: 0.95rem; color: var(--muted); }
-      .project-desc { margin-top: 0.25rem; line-height: 1.6; }
+      .paper-venue { font-size: 0.95rem; color: var(--muted); }
+      .project-desc,
+      .paper-abstract {
+        font-family: var(--font-sans);
+        font-size: 0.95rem;
+        line-height: 1.65;
+      }
+      .project-desc { margin-top: 0.25rem; color: var(--text); }
+      .paper-abstract { margin: 0.5rem 0 0; color: var(--text); }
       .resume-link { display: inline-block; margin-top: 1rem; font-weight: 600; }
       .resume-embed-wrap { margin-top: 0.5rem; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; background: var(--bg); }
       .resume-embed-wrap iframe { display: block; width: 100%; height: 70vh; min-height: 500px; border: 0; }
@@ -77,15 +105,14 @@
       .paper details[open] .paper-chevron { transform: rotate(90deg); }
       .paper summary .paper-title { flex: 1; min-width: 0; margin-bottom: 0; }
       .paper-citation { font-size: 0.9rem; color: var(--muted); }
-      .paper-abstract { font-size: 0.95rem; margin: 0.5rem 0 0; line-height: 1.65; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+      .paper-abstract { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
       .paper details[open] .paper-abstract { -webkit-line-clamp: unset; }
       .paper-body { margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px solid rgba(45, 74, 111, 0.12); }
       .paper-fig { margin: 0.6rem 0; border-radius: 4px; overflow: hidden; max-width: 100%; }
       .paper-fig img { display: block; width: 100%; max-width: 420px; height: auto; border-radius: 2px; }
       .paper-fig figcaption { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
       .dissertation { margin-bottom: 1.35rem; }
-      .dissertation-title { font-weight: 600; margin-bottom: 0.35rem; }
-      a.dissertation-title, .dissertation .dissertation-title { display: block; }
+      .dissertation .dissertation-title { margin-bottom: 0.35rem; }
       .dissertation-meta { font-size: 0.95rem; color: var(--muted); margin-top: 0.25rem; line-height: 1.6; }
       .site-footer { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border); }
       .footer-credit { font-size: 0.8rem; color: var(--muted); margin: 0; }
@@ -107,7 +134,7 @@
     <div class="wrap">
       <header class="header-row">
         <div class="header-text">
-          <h1>Toviah Moldwin, Ph.D.</h1>
+          <h1 class="font-serif">Toviah Moldwin, Ph.D.</h1>
           <p class="tagline">Computational neuroscientist, machine learning engineer, and data scientist.</p>
         </div>
         <img src="megrafitti.png" alt="Toviah Moldwin" class="header-photo" width="120" height="120">
@@ -138,15 +165,15 @@
 
       <section id="projects" class="tab-panel" role="tabpanel">
         <div class="project">
-          <a href="https://github.com/Raneem-mahajne/creating_transformer/tree/integer_string" target="_blank" rel="noopener" class="project-title">Intuitive transformer interpretability</a>
+          <a href="https://github.com/Raneem-mahajne/creating_transformer/tree/integer_string" target="_blank" rel="noopener" class="project-title entry-title">Intuitive transformer interpretability</a>
           <div class="project-desc">Transformer architectures are the basis of modern large language models (LLMs) and many other AI applications today. Transformers are often treated as 'black boxes' that give the right answer but are mechanistically inscrutable. Together with my student Raneem Mahajne, I train extremely small transformer models on very simple tasks, which allows us to completely and directly visualize every single stage of the transformer computation, allowing us to understand how generative AI models work in a much deeper and more intuitive way.</div>
         </div>
         <div class="project">
-          <a href="https://github.com/tmoldwin/SynClass" target="_blank" rel="noopener" class="project-title">Synapse classification from electron microscopy</a>
+          <a href="https://github.com/tmoldwin/SynClass" target="_blank" rel="noopener" class="project-title entry-title">Synapse classification from electron microscopy</a>
           <div class="project-desc">Recent advances in electron microscopy pipelines have enabled researchers to image relatively large volumes of brain tissue with synapse-level resolution. Analysis of the synaptic connectivity between neurons in these datasets is known as connectomics. Unfortunately, it is not always possible to trace synapses back to their presynaptic neurons in order to determine whether the synapse is excitatory or inhibitory, which is often a crucial piece of knowledge when analyzing connectomics datasets. Using computer vision models, I classify images of synapses with unknown excitatory/inhibitory identity based on training data from synapses with known E/I identity.</div>
         </div>
         <div class="project">
-          <a href="https://notazombie.net" target="_blank" rel="noopener" class="project-title">NotAZombie: Dating for People with Brains</a>
+          <a href="https://notazombie.net" target="_blank" rel="noopener" class="project-title entry-title">NotAZombie: Dating for People with Brains</a>
           <div class="project-desc">NotAZombie is a dating application that emphasizes text over images. We use artificial intelligence to help match people on the basis of what they write, and we also allow users to form their own 'dating communities' to create niche dating networks on our platform.</div>
         </div>
       </section>
@@ -154,11 +181,11 @@
       <section id="research" class="tab-panel" role="tabpanel">
         <p>My research focuses on how single neurons and dendrites implement learning: calcium-based synaptic plasticity, dendritic computation, and brain-inspired machine learning.</p>
 
-        <h3>Papers</h3>
+        <h3 class="font-serif">Papers</h3>
         <div class="paper">
           <details>
             <summary>
-              <a href="https://doi.org/10.1371/journal.pcbi.1012754" target="_blank" rel="noopener" class="paper-title">The Calcitron: A Simple Neuron Model That Implements Many Learning Rules via the Calcium Control Hypothesis</a>
+              <a href="https://doi.org/10.1371/journal.pcbi.1012754" target="_blank" rel="noopener" class="paper-title entry-title">The Calcitron: A Simple Neuron Model That Implements Many Learning Rules via the Calcium Control Hypothesis</a>
               <span class="paper-chevron" aria-hidden="true">▸</span>
             </summary>
             <div class="paper-citation">T. Moldwin, L. S. Azran, I. Segev. <em>PLOS Comput. Biol.</em> <strong>21</strong>(1): e1012754 (2025). <a href="https://doi.org/10.1371/journal.pcbi.1012754" target="_blank" rel="noopener">doi:10.1371/journal.pcbi.1012754</a></div>
@@ -172,7 +199,7 @@
         <div class="paper">
           <details>
             <summary>
-              <a href="https://doi.org/10.1007/s10827-025-00894-6" target="_blank" rel="noopener" class="paper-title">A Generalized Framework for the Calcium Control Hypothesis Describes Weight-Dependent Synaptic Changes in Behavioral Time Scale Plasticity</a>
+              <a href="https://doi.org/10.1007/s10827-025-00894-6" target="_blank" rel="noopener" class="paper-title entry-title">A Generalized Framework for the Calcium Control Hypothesis Describes Weight-Dependent Synaptic Changes in Behavioral Time Scale Plasticity</a>
               <span class="paper-chevron" aria-hidden="true">▸</span>
             </summary>
             <div class="paper-citation">T. Moldwin, L. S. Azran, I. Segev. <em>J. Comput. Neurosci.</em> <strong>53</strong>(2): 333–357 (2025). <a href="https://doi.org/10.1007/s10827-025-00894-6" target="_blank" rel="noopener">doi:10.1007/s10827-025-00894-6</a></div>
@@ -183,7 +210,7 @@
         <div class="paper">
           <details>
             <summary>
-              <a href="https://doi.org/10.1523/ENEURO.0014-23.2023" target="_blank" rel="noopener" class="paper-title">Asymmetric Voltage Attenuation in Dendrites Can Enable Hierarchical Heterosynaptic Plasticity</a>
+              <a href="https://doi.org/10.1523/ENEURO.0014-23.2023" target="_blank" rel="noopener" class="paper-title entry-title">Asymmetric Voltage Attenuation in Dendrites Can Enable Hierarchical Heterosynaptic Plasticity</a>
               <span class="paper-chevron" aria-hidden="true">▸</span>
             </summary>
             <div class="paper-citation">T. Moldwin, M. Kalmenson, I. Segev. <em>eNeuro</em> <strong>10</strong>(7): ENEURO.0014-23.2023 (2023). <a href="https://doi.org/10.1523/ENEURO.0014-23.2023" target="_blank" rel="noopener">doi:10.1523/ENEURO.0014-23.2023</a></div>
@@ -201,7 +228,7 @@
         <div class="paper">
           <details>
             <summary>
-              <a href="https://doi.org/10.1371/journal.pcbi.1009015" target="_blank" rel="noopener" class="paper-title">The gradient clusteron: A model neuron that learns to solve classification tasks via dendritic nonlinearities, structural plasticity, and gradient descent</a>
+              <a href="https://doi.org/10.1371/journal.pcbi.1009015" target="_blank" rel="noopener" class="paper-title entry-title">The gradient clusteron: A model neuron that learns to solve classification tasks via dendritic nonlinearities, structural plasticity, and gradient descent</a>
               <span class="paper-chevron" aria-hidden="true">▸</span>
             </summary>
             <div class="paper-citation">T. Moldwin, M. Kalmenson, I. Segev. <em>PLOS Comput. Biol.</em> <strong>17</strong>(5): e1009015 (2021). <a href="https://doi.org/10.1371/journal.pcbi.1009015" target="_blank" rel="noopener">doi:10.1371/journal.pcbi.1009015</a></div>
@@ -219,7 +246,7 @@
         <div class="paper">
           <details>
             <summary>
-              <a href="https://doi.org/10.3389/fncom.2020.00033" target="_blank" rel="noopener" class="paper-title">Perceptron Learning and Classification in a Modeled Cortical Pyramidal Cell</a>
+              <a href="https://doi.org/10.3389/fncom.2020.00033" target="_blank" rel="noopener" class="paper-title entry-title">Perceptron Learning and Classification in a Modeled Cortical Pyramidal Cell</a>
               <span class="paper-chevron" aria-hidden="true">▸</span>
             </summary>
             <div class="paper-citation">T. Moldwin, I. Segev. <em>Front. Comput. Neurosci.</em> <strong>14</strong>:33 (2020). <a href="https://doi.org/10.3389/fncom.2020.00033" target="_blank" rel="noopener">doi:10.3389/fncom.2020.00033</a></div>
@@ -236,7 +263,7 @@
         <div class="paper">
           <details>
             <summary>
-              <a href="https://doi.org/10.1162/jocn_a_01181" target="_blank" rel="noopener" class="paper-title">Statistical Learning of Melodic Patterns Influences the Brain's Response to Wrong Notes</a>
+              <a href="https://doi.org/10.1162/jocn_a_01181" target="_blank" rel="noopener" class="paper-title entry-title">Statistical Learning of Melodic Patterns Influences the Brain's Response to Wrong Notes</a>
               <span class="paper-chevron" aria-hidden="true">▸</span>
             </summary>
             <div class="paper-citation">T. Moldwin, O. Schwartz, E. S. Sussman. <em>J. Cogn. Neurosci.</em> <strong>29</strong>(12): 2114–2125 (2017). <a href="https://doi.org/10.1162/jocn_a_01181" target="_blank" rel="noopener">doi:10.1162/jocn_a_01181</a></div>
@@ -246,13 +273,13 @@
 
         <p><a href="https://scholar.google.com/scholar?q=author%3A%22Toviah+Moldwin%22" target="_blank" rel="noopener" class="resume-link">View all publications → Google Scholar</a></p>
 
-        <h3>Dissertations</h3>
+        <h3 class="font-serif">Dissertations</h3>
         <div class="dissertation">
-          <a href="https://search.proquest.com/openview/a6b22a5af7bb6abb773bf93efc52fb35/1?pq-origsite=gscholar&cbl=18750&diss=y" target="_blank" rel="noopener" class="dissertation-title">Plasticity and Learning Algorithms in Models of the Single Neuron</a>
+          <a href="https://search.proquest.com/openview/a6b22a5af7bb6abb773bf93efc52fb35/1?pq-origsite=gscholar&cbl=18750&diss=y" target="_blank" rel="noopener" class="dissertation-title entry-title">Plasticity and Learning Algorithms in Models of the Single Neuron</a>
           <div class="dissertation-meta">Ph.D. thesis, ELSC, Hebrew University of Jerusalem, 2024. Advisor: Idan Segev. <a href="https://www.youtube.com/watch?v=KLmk3xnojKU" target="_blank" rel="noopener">Thesis defense (video)</a></div>
         </div>
         <div class="dissertation">
-          <a href="https://repository.yu.edu/items/e76ac427-ecb7-4380-b154-298d40786ee4" target="_blank" rel="noopener" class="dissertation-title">Using Supervised Machine Learning to Linguistically Date Biblical Texts</a>
+          <a href="https://repository.yu.edu/items/e76ac427-ecb7-4380-b154-298d40786ee4" target="_blank" rel="noopener" class="dissertation-title entry-title">Using Supervised Machine Learning to Linguistically Date Biblical Texts</a>
           <div class="dissertation-meta">Honors thesis, B.A., Yeshiva University, 2013.</div>
         </div>
       </section>
